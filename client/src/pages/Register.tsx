@@ -3,7 +3,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { Loader2, ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { Loader2, ArrowRight, ShieldCheck, Sparkles, Zap, RefreshCw } from "lucide-react";
+
+// ... inside Register component
+  const generatePassword = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+    let password = "";
+    for (let i = 0; i < 16; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    form.setValue("password", password, { shouldValidate: true });
+  };
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +26,7 @@ const registerSchema = insertUserSchema.extend({
   surname: z.string().min(2, "O sobrenome deve ter pelo menos 2 caracteres"),
   email: z.string().email("E-mail inválido"),
   phone: z.string().min(10, "Número de celular incompleto"),
-  password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres"),
+  password: z.string().min(16, "A senha deve ter pelo menos 16 caracteres"),
 });
 
 type RegisterForm = z.infer<typeof registerSchema>;
@@ -174,11 +184,21 @@ export default function Register() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Senha</Label>
+                <button
+                  type="button"
+                  onClick={generatePassword}
+                  className="text-xs font-medium text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                >
+                  <RefreshCw className="w-3 h-3" />
+                  Gerar senha segura
+                </button>
+              </div>
               <Input
                 id="password"
                 type="password"
-                placeholder="Crie uma senha forte"
+                placeholder="Crie uma senha forte (min. 16 chars)"
                 className="h-11 shadow-sm"
                 {...form.register("password")}
               />

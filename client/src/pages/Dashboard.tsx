@@ -57,6 +57,9 @@ export default function Dashboard() {
             <span className="text-xs font-medium text-muted-foreground">
               {isConnected ? 'Sistema Online' : 'Conectando...'}
             </span>
+            <span className="text-[10px] text-muted-foreground/50 ml-2 border-l pl-2">
+              {Intl.DateTimeFormat().resolvedOptions().timeZone}
+            </span>
           </div>
         </div>
 

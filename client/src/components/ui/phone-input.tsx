@@ -18,7 +18,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const COUNTRIES = [
-  { code: "BR", name: "Brasil", dial: "+55", mask: "(00) 0 0000-0000" },
+  { code: "BR", name: "Brasil", dial: "+55", mask: "(00) 0000-0000" },
   { code: "US", name: "Estados Unidos", dial: "+1", mask: "(000) 000-0000" },
   { code: "PT", name: "Portugal", dial: "+351", mask: "000 000 000" },
   { code: "AR", name: "Argentina", dial: "+54", mask: "(000) 000-0000" },
@@ -90,6 +90,14 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             className
           )}
           mask={selectedCountry.mask}
+          dispatch={(appended, dynamicMasked) => {
+            const isBR = selectedCountry.code === "BR";
+            const currentRaw = dynamicMasked.unmaskedValue + appended;
+            if (isBR && currentRaw.length > 10) {
+              return "(00) 0 0000-0000";
+            }
+            return selectedCountry.mask;
+          }}
           definitions={{
             '0': /[0-9]/,
           }}
