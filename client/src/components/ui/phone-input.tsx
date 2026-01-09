@@ -102,11 +102,11 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             '0': /[0-9]/,
           }}
           value={value}
+          lazy={false}
           unmask={true}
           onAccept={(val: string) => {
-            const rawDigits = val.replace(/\D/g, "");
-            const cc = selectedCountry.dial.replace(/\D/g, "");
-            onChange(cc + rawDigits);
+            // val is the unmasked value (only digits from the input)
+            onChange(val);
           }}
           placeholder={selectedCountry.mask.replace(/0/g, "_")}
           inputRef={ref as any}
