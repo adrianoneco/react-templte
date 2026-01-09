@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Loader2, Mail, Lock, ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { Loader2, Mail, Lock, ArrowRight, ShieldCheck, Sparkles, Zap, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +22,7 @@ type LoginForm = z.infer<typeof loginSchema>;
 export default function Login() {
   const { login, isLoggingIn } = useAuth();
   const [, setLocation] = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
   
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -161,11 +162,18 @@ export default function Login() {
                 <Lock className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className="pl-9 h-12 bg-background border-input focus:border-primary transition-all duration-200 shadow-sm"
+                  className="pl-9 h-12 bg-background border-input focus:border-primary transition-all duration-200 shadow-sm pr-10"
                   {...form.register("password")}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3.5 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
               {form.formState.errors.password && (
                 <p className="text-xs text-destructive font-medium ml-1">

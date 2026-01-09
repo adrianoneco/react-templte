@@ -5,21 +5,23 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Loader2, ArrowRight, ShieldCheck, Sparkles, Zap, RefreshCw } from "lucide-react";
 
-// ... inside Register component
-  const generatePassword = () => {
-    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
-    let password = "";
-    for (let i = 0; i < 16; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    form.setValue("password", password, { shouldValidate: true });
-  };
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { insertUserSchema } from "@shared/schema";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogTrigger,
+  DialogFooter
+} from "@/components/ui/dialog";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Eye, EyeOff } from "lucide-react";
 
 const registerSchema = insertUserSchema.extend({
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres"),
@@ -33,6 +35,12 @@ type RegisterForm = z.infer<typeof registerSchema>;
 
 export default function Register() {
   const { register, isRegistering } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [passConfig, setPassConfig] = useState({
+    length: 16,
+    includeSymbols: true,
+    includeNumbers: true
+  });
   
   const form = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
@@ -44,6 +52,18 @@ export default function Register() {
       password: "",
     },
   });
+
+  const generatePassword = () => {
+    let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (passConfig.includeNumbers) charset += "0123456789";
+    if (passConfig.includeSymbols) charset += "!@#$%^&*()_+";
+    
+    let password = "";
+    for (let i = 0; i < passConfig.length; i++) {
+      password += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    form.setValue("password", password, { shouldValidate: true });
+  };
 
   const onSubmit = (data: RegisterForm) => {
     // Busca o dial code baseado no país selecionado no PhoneInput (padrão Brasil +55)
@@ -140,31 +160,17 @@ export default function Register() {
           </div>
 
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Nome</Label>
-                <Input
-                  id="name"
-                  placeholder="Ex: João"
-                  className="h-11 shadow-sm"
-                  {...form.register("name")}
-                />
-                {form.formState.errors.name && (
-                  <p className="text-xs text-destructive font-medium">{form.formState.errors.name.message}</p>
-                )}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="surname">Sobrenome</Label>
-                <Input
-                  id="surname"
-                  placeholder="Ex: Silva"
-                  className="h-11 shadow-sm"
-                  {...form.register("surname")}
-                />
-                {form.formState.errors.surname && (
-                  <p className="text-xs text-destructive font-medium">{form.formState.errors.surname.message}</p>
-                )}
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="name">Nome (Frase única)</Label>
+              <Input
+                id="name"
+                placeholder="Ex: JOAO SILVA"
+                className="h-11 shadow-sm"
+                {...form.register("name")}
+              />
+              {form.formState.errors.name && (
+                <p className="text-xs text-destructive font-medium">{form.formState.errors.name.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -196,22 +202,79 @@ export default function Register() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Senha</Label>
+                
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      type="button"
+                      className="text-xs font-medium text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                    >
+                      <RefreshCw className="w-3 h-3" />
+                      Gerar senha segura
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle>Configurar Senha</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-6 py-4">
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm font-medium">
+                          <span>Comprimento</span>
+                          <span>{passConfig.length} caracteres</span>
+                        </div>
+                        <Slider 
+                          value={[passConfig.length]} 
+                          min={16} 
+                          max={64} 
+                          step={1}
+                          onValueChange={([val]) => setPassConfig(prev => ({ ...prev, length: val }))}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="symbols">Incluir Símbolos (!@#$)</Label>
+                        <Switch 
+                          id="symbols" 
+                          checked={passConfig.includeSymbols}
+                          onCheckedChange={(val) => setPassConfig(prev => ({ ...prev, includeSymbols: val }))}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="numbers">Incluir Números (0-9)</Label>
+                        <Switch 
+                          id="numbers" 
+                          checked={passConfig.includeNumbers}
+                          onCheckedChange={(val) => setPassConfig(prev => ({ ...prev, includeNumbers: val }))}
+                        />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="button" className="w-full" onClick={() => {
+                        generatePassword();
+                        // Optional: close dialog logic
+                      }}>
+                        Gerar e Aplicar
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </div>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Crie uma senha forte (min. 16 chars)"
+                  className="h-11 shadow-sm pr-10"
+                  {...form.register("password")}
+                />
                 <button
                   type="button"
-                  onClick={generatePassword}
-                  className="text-xs font-medium text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <RefreshCw className="w-3 h-3" />
-                  Gerar senha segura
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Crie uma senha forte (min. 16 chars)"
-                className="h-11 shadow-sm"
-                {...form.register("password")}
-              />
               {form.formState.errors.password && (
                 <p className="text-xs text-destructive font-medium">{form.formState.errors.password.message}</p>
               )}
