@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { TeamMember, InsertTeamMember } from "@shared/schema";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import Layout from "@/components/layout/Layout";
+import { Layout } from "@/components/layout/Layout";
 import { 
   Users, 
   Plus, 
