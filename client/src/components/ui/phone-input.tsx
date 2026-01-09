@@ -89,32 +89,17 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             "flex h-11 w-full bg-transparent px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 font-mono",
             className
           )}
-          mask={[
-            { mask: "(00) 0000-0000" },
-            { mask: "(00) 0 0000-0000" }
-          ]}
-          dispatch={(appended, dynamicMasked) => {
-            const isBR = selectedCountry.code === "BR";
-            if (isBR) {
-              const currentRaw = (dynamicMasked.unmaskedValue || "") + appended;
-              if (currentRaw.length > 10) {
-                return "(00) 0 0000-0000";
-              }
-              return "(00) 0000-0000";
-            }
-            return selectedCountry.mask;
-          }}
+          mask="(00) 00000-0000"
+          lazy={false}
           definitions={{
             '0': /[0-9]/,
           }}
           value={value}
-          lazy={false}
           unmask={true}
           onAccept={(val: string) => {
-            // val is the unmasked value (only digits from the input)
             onChange(val);
           }}
-          placeholder={selectedCountry.mask.replace(/0/g, "_")}
+          placeholder="(00) 00000-0000"
           inputRef={ref as any}
           {...props}
         />
