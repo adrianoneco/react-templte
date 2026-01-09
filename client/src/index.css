@@ -9,17 +9,17 @@
   --font-body: 'Plus Jakarta Sans', sans-serif;
 
   /* TEAL / CYAN Theme - Light Mode */
-  --background: 180 20% 99%;
-  --foreground: 192 80% 10%;
+  --background: 180 20% 98%;
+  --foreground: 192 80% 8%;
   
   --primary: 175 84% 32%;      /* Teal 700 */
   --primary-foreground: 180 20% 99%;
   
-  --secondary: 185 60% 95%;    /* Cyan 50 */
+  --secondary: 185 60% 94%;    /* Cyan 50 */
   --secondary-foreground: 175 84% 32%;
   
-  --muted: 185 30% 94%;
-  --muted-foreground: 190 20% 45%;
+  --muted: 185 30% 92%;
+  --muted-foreground: 190 20% 40%;
   
   --accent: 189 94% 43%;       /* Cyan 600 */
   --accent-foreground: 180 20% 99%;
@@ -27,42 +27,48 @@
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 185 30% 90%;
-  --input: 185 30% 90%;
+  --border: 185 30% 88%;
+  --input: 185 30% 88%;
   --ring: 175 84% 32%;
   
   --card: 0 0% 100%;
-  --card-foreground: 192 80% 10%;
+  --card-foreground: 192 80% 8%;
   
+  --popover: 0 0% 100%;
+  --popover-foreground: 192 80% 8%;
+
   --radius: 0.75rem;
 }
 
 .dark {
   /* TEAL / CYAN Theme - Dark Mode */
-  --background: 195 40% 6%;    /* Deep Slate */
+  --background: 200 45% 4%;    /* Even darker deep slate */
   --foreground: 180 20% 98%;
   
-  --primary: 175 70% 45%;      /* Teal 500 */
-  --primary-foreground: 195 40% 6%;
+  --primary: 175 75% 45%;      /* Teal 500 */
+  --primary-foreground: 200 45% 4%;
   
-  --secondary: 194 35% 15%;
+  --secondary: 195 40% 12%;
   --secondary-foreground: 180 20% 98%;
   
-  --muted: 194 35% 15%;
-  --muted-foreground: 190 20% 65%;
+  --muted: 195 40% 12%;
+  --muted-foreground: 190 20% 70%;
   
-  --accent: 189 90% 50%;       /* Cyan 500 */
-  --accent-foreground: 195 40% 6%;
+  --accent: 189 95% 48%;       /* Cyan 500 */
+  --accent-foreground: 200 45% 4%;
   
-  --destructive: 0 62% 30%;
+  --destructive: 0 62% 40%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 194 35% 20%;
-  --input: 194 35% 20%;
-  --ring: 175 70% 45%;
+  --border: 195 40% 16%;
+  --input: 195 40% 16%;
+  --ring: 175 75% 45%;
   
-  --card: 194 40% 10%;
+  --card: 195 45% 8%;
   --card-foreground: 180 20% 98%;
+
+  --popover: 195 45% 8%;
+  --popover-foreground: 180 20% 98%;
 }
 
 @layer base {

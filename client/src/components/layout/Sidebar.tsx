@@ -23,7 +23,7 @@ export function Sidebar() {
   const { logout } = useAuth();
 
   return (
-    <aside className="hidden md:flex flex-col w-64 fixed left-0 top-16 bottom-0 border-r bg-card z-30">
+    <aside className="hidden md:flex flex-col w-64 fixed left-0 top-16 bottom-0 border-r bg-card/50 backdrop-blur-sm z-30">
       <div className="p-4 flex-1 overflow-y-auto py-8">
         <nav className="space-y-2">
           {MENU_ITEMS.map((item) => {
@@ -39,7 +39,7 @@ export function Sidebar() {
                   )}
                 >
                   {isActive && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-full" />
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-full shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
                   )}
                   <item.icon
                     className={cn(

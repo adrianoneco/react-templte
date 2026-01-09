@@ -9,20 +9,19 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell, Menu, User as UserIcon, LogOut, Search, Settings, Sun, Moon } from "lucide-react";
+import { Bell, Menu, User as UserIcon, LogOut, Search, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
+import { ModeToggle } from "./ModeToggle";
 
 export function Header() {
   const { user, logout } = useAuth();
-  const { theme, setTheme } = useTheme();
   
   const initials = user 
     ? `${user.name[0]}${user.surname[0]}`.toUpperCase() 
     : "U";
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 border-b bg-background z-40 px-4 md:px-6 flex items-center justify-between shadow-sm">
+    <header className="fixed top-0 left-0 right-0 h-16 border-b bg-background/80 backdrop-blur-md z-40 px-4 md:px-6 flex items-center justify-between shadow-sm">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" className="md:hidden text-muted-foreground">
           <Menu className="w-5 h-5" />
@@ -33,7 +32,7 @@ export function Header() {
             <span className="font-display font-bold text-white text-lg">N</span>
           </div>
           <span className="font-display font-bold text-xl tracking-tight text-foreground hidden sm:block">
-            Nexus<span className="text-primary">App</span>
+            Nexus<span className="text-primary text-gradient">App</span>
           </span>
         </Link>
       </div>
@@ -43,11 +42,13 @@ export function Header() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input 
             placeholder="Pesquisar..." 
-            className="w-full bg-muted/50 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-background transition-all"
+            className="w-full bg-muted/50 border-border rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-background transition-all border"
           />
         </div>
 
         <div className="flex items-center gap-2">
+          <ModeToggle />
+          
           <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-primary transition-colors">
             <Bell className="w-5 h-5" />
             <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-background animate-pulse" />
@@ -56,20 +57,6 @@ export function Header() {
           <div className="h-8 w-px bg-border hidden sm:block mx-2" />
 
           <DropdownMenu>
-            <div className="flex items-center gap-1 mr-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="text-muted-foreground hover:text-primary transition-colors"
-                title="Alternar tema"
-              >
-                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Alternar tema</span>
-              </Button>
-            </div>
-
             <DropdownMenuTrigger asChild>
               <button className="flex items-center gap-3 outline-none group">
                 <div className="hidden md:flex flex-col items-end mr-1">

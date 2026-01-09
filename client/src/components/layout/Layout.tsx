@@ -8,11 +8,11 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Sidebar />
       <main className="pt-16 md:pl-64 min-h-screen transition-all duration-300 ease-in-out">
-        <div className="container mx-auto p-4 md:p-8 lg:p-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="container mx-auto p-4 md:p-8 lg:p-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
           {children}
         </div>
       </main>
