@@ -26,7 +26,6 @@ import { Eye, EyeOff } from "lucide-react";
 
 const registerSchema = insertUserSchema.extend({
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres"),
-  surname: z.string().min(2, "O sobrenome deve ter pelo menos 2 caracteres"),
   email: z.string().email("E-mail inválido"),
   phone: z.string().min(10, "Número de celular incompleto"),
   password: z.string().min(16, "A senha deve ter pelo menos 16 caracteres"),
@@ -47,7 +46,6 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
-      surname: "",
       email: "",
       phone: "",
       password: "",
@@ -67,13 +65,19 @@ export default function Register() {
   };
 
   const onSubmit = (data: RegisterForm) => {
-    // Busca o dial code baseado no país selecionado no PhoneInput (padrão Brasil +55)
-    // O PhoneInput agora passa apenas os dígitos do input (DDD + Telefone)
+    // Helper function to capitalize each word
+    const capitalize = (str: string) => {
+      return str
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    };
+
     const ddi = "55"; 
     const formattedData = {
       ...data,
-      name: data.name.trim().toUpperCase(),
-      surname: data.surname.trim().toUpperCase(),
+      name: capitalize(data.name.trim()),
       email: data.email.trim().toLowerCase(),
       phone: ddi + data.phone.replace(/\D/g, ""),
     };
@@ -162,10 +166,10 @@ export default function Register() {
 
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Nome (Frase única)</Label>
+              <Label htmlFor="name">Nome completo</Label>
               <Input
                 id="name"
-                placeholder="Ex: JOAO SILVA"
+                placeholder="Ex: John Doe"
                 className="h-11 shadow-sm"
                 {...form.register("name")}
               />

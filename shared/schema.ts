@@ -5,7 +5,6 @@ import { z } from "zod";
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  surname: text("surname").notNull(),
   email: text("email").notNull().unique(),
   phone: text("phone").notNull(), // Stored as digits: CC + DDD + 8 digits
   password: text("password").notNull(),
@@ -27,7 +26,8 @@ export const insertUserSchema = createInsertSchema(users).omit({
   id: true, 
   createdAt: true 
 }).extend({
-  email: z.string().email(),
+  name: z.string().min(2, "O nome completo deve ter pelo menos 2 caracteres"),
+  email: z.string().email("E-mail inválido"),
 });
 
 export const insertTeamMemberSchema = createInsertSchema(teamMembers).omit({
