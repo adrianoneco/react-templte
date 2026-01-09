@@ -28,7 +28,7 @@ export function Header() {
         </Button>
         
         <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:shadow-teal-500/40 transition-all duration-300">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center shadow-lg shadow-violet-500/20 group-hover:shadow-violet-500/40 transition-all duration-300">
             <span className="font-display font-bold text-white text-lg">N</span>
           </div>
           <span className="font-display font-bold text-xl tracking-tight text-foreground hidden sm:block">

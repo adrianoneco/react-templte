@@ -8,67 +8,67 @@
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
 
-  /* TEAL / CYAN Theme - Light Mode */
-  --background: 180 20% 98%;
-  --foreground: 192 80% 8%;
+  /* PURPLE / BLUE Theme - Light Mode */
+  --background: 240 20% 98%;
+  --foreground: 240 50% 10%;
   
-  --primary: 175 84% 32%;      /* Teal 700 */
-  --primary-foreground: 180 20% 99%;
+  --primary: 262 80% 50%;      /* Purple 600 */
+  --primary-foreground: 240 20% 99%;
   
-  --secondary: 185 60% 94%;    /* Cyan 50 */
-  --secondary-foreground: 175 84% 32%;
+  --secondary: 240 30% 95%;    /* Blue 50 */
+  --secondary-foreground: 262 80% 50%;
   
-  --muted: 185 30% 92%;
-  --muted-foreground: 190 20% 40%;
+  --muted: 240 20% 94%;
+  --muted-foreground: 240 10% 45%;
   
-  --accent: 189 94% 43%;       /* Cyan 600 */
-  --accent-foreground: 180 20% 99%;
+  --accent: 221 83% 53%;       /* Blue 600 */
+  --accent-foreground: 240 20% 99%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 185 30% 88%;
-  --input: 185 30% 88%;
-  --ring: 175 84% 32%;
+  --border: 240 15% 90%;
+  --input: 240 15% 90%;
+  --ring: 262 80% 50%;
   
   --card: 0 0% 100%;
-  --card-foreground: 192 80% 8%;
+  --card-foreground: 240 50% 10%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 192 80% 8%;
+  --popover-foreground: 240 50% 10%;
 
   --radius: 0.75rem;
 }
 
 .dark {
-  /* TEAL / CYAN Theme - Dark Mode (Softer & Brighter) */
-  --background: 210 25% 9%;    /* Slightly lighter, more bluish slate */
-  --foreground: 180 20% 98%;
+  /* PURPLE / BLUE Theme - Dark Mode (Softer & Brighter) */
+  --background: 240 30% 6%;
+  --foreground: 240 20% 98%;
   
-  --primary: 175 75% 50%;      /* Brighter Teal */
-  --primary-foreground: 210 25% 9%;
+  --primary: 262 70% 65%;      /* Brighter Purple */
+  --primary-foreground: 240 30% 6%;
   
-  --secondary: 210 25% 15%;    /* Lighter secondary */
-  --secondary-foreground: 180 20% 98%;
+  --secondary: 240 25% 15%;
+  --secondary-foreground: 240 20% 98%;
   
-  --muted: 210 25% 15%;
-  --muted-foreground: 210 15% 75%; /* Brighter muted text */
+  --muted: 240 25% 15%;
+  --muted-foreground: 240 10% 70%;
   
-  --accent: 189 95% 55%;       /* Brighter Cyan */
-  --accent-foreground: 210 25% 9%;
+  --accent: 217 91% 60%;       /* Brighter Blue */
+  --accent-foreground: 240 30% 6%;
   
-  --destructive: 0 70% 50%;
+  --destructive: 0 62% 45%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 210 25% 20%;       /* Visible but soft border */
-  --input: 210 25% 20%;
-  --ring: 175 75% 50%;
+  --border: 240 20% 20%;
+  --input: 240 20% 20%;
+  --ring: 262 70% 65%;
   
-  --card: 210 25% 12%;         /* Cards slightly lighter than background */
-  --card-foreground: 180 20% 98%;
+  --card: 240 30% 10%;
+  --card-foreground: 240 20% 98%;
 
-  --popover: 210 25% 12%;
-  --popover-foreground: 180 20% 98%;
+  --popover: 240 30% 10%;
+  --popover-foreground: 240 20% 98%;
 }
 
 @layer base {
@@ -76,7 +76,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-cyan-200 selection:text-teal-900 dark:selection:bg-teal-900 dark:selection:text-cyan-100;
+    @apply bg-background text-foreground antialiased selection:bg-violet-200 selection:text-violet-900 dark:selection:bg-violet-900 dark:selection:text-violet-100;
     font-family: var(--font-body);
   }
   h1, h2, h3, h4, h5, h6 {
@@ -103,6 +103,6 @@
     @apply bg-card border border-border shadow-xl;
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-cyan-500 dark:from-teal-400 dark:to-cyan-300;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-blue-500 dark:from-violet-400 dark:to-blue-300;
   }
 }

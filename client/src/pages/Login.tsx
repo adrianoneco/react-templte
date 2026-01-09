@@ -41,7 +41,7 @@ export default function Login() {
   return (
     <div className="min-h-screen w-full flex bg-background">
       {/* Lado Esquerdo - Info do App */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-teal-600 to-cyan-700 p-12 flex-col justify-between text-white">
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-violet-600 to-blue-700 p-12 flex-col justify-between text-white">
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]" />
           <motion.div 
@@ -67,7 +67,7 @@ export default function Login() {
             <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/30">
               <span className="font-display font-bold text-white text-2xl">N</span>
             </div>
-            <span className="font-display font-bold text-3xl tracking-tight">Nexus<span className="text-cyan-200">App</span></span>
+            <span className="font-display font-bold text-3xl tracking-tight">Nexus<span className="text-violet-200">App</span></span>
           </Link>
         </div>
 
@@ -78,36 +78,36 @@ export default function Login() {
             transition={{ delay: 0.2 }}
             className="text-5xl font-bold leading-tight"
           >
-            Sua jornada para o <span className="text-cyan-300">próximo nível</span> começa aqui.
+            Sua jornada para o <span className="text-violet-300">próximo nível</span> começa aqui.
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-xl text-cyan-50/80 leading-relaxed"
+            className="text-xl text-violet-50/80 leading-relaxed"
           >
             Gerencie seus projetos com a velocidade da luz e a segurança que você merece. A plataforma completa para o seu sucesso.
           </motion.p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8">
             <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <Zap className="w-6 h-6 text-cyan-300 shrink-0" />
+              <Zap className="w-6 h-6 text-violet-300 shrink-0" />
               <div>
                 <h3 className="font-semibold">Performance</h3>
-                <p className="text-sm text-cyan-50/60">Interface ultra rápida e responsiva.</p>
+                <p className="text-sm text-violet-50/60">Interface ultra rápida e responsiva.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <ShieldCheck className="w-6 h-6 text-cyan-300 shrink-0" />
+              <ShieldCheck className="w-6 h-6 text-violet-300 shrink-0" />
               <div>
                 <h3 className="font-semibold">Segurança</h3>
-                <p className="text-sm text-cyan-50/60">Seus dados protegidos de ponta a ponta.</p>
+                <p className="text-sm text-violet-50/60">Seus dados protegidos de ponta a ponta.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center gap-4 text-sm text-cyan-100/60">
+        <div className="relative z-10 flex items-center gap-4 text-sm text-violet-100/60">
           <Sparkles className="w-4 h-4" />
           <span>© 2026 NexusApp Technologies. Todos os direitos reservados.</span>
         </div>
@@ -116,8 +116,8 @@ export default function Login() {
       {/* Lado Direito - Form de Login */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative overflow-hidden">
         <div className="lg:hidden absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-400/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-400/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl" />
         </div>
 
         <motion.div
@@ -194,7 +194,7 @@ export default function Login() {
 
             <Button
               type="submit"
-              className="w-full h-12 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 text-lg font-semibold"
+              className="w-full h-12 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 text-lg font-semibold"
               disabled={isLoggingIn}
             >
               {isLoggingIn ? (

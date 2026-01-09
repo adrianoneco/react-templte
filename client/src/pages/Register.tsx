@@ -87,7 +87,7 @@ export default function Register() {
   return (
     <div className="min-h-screen w-full flex bg-background">
       {/* Lado Esquerdo - Info do App */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-cyan-600 to-teal-700 p-12 flex-col justify-between text-white">
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-violet-600 to-blue-700 p-12 flex-col justify-between text-white">
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]" />
           <motion.div 
@@ -102,7 +102,7 @@ export default function Register() {
             <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/30">
               <span className="font-display font-bold text-white text-2xl">N</span>
             </div>
-            <span className="font-display font-bold text-3xl tracking-tight">Nexus<span className="text-cyan-200">App</span></span>
+            <span className="font-display font-bold text-3xl tracking-tight">Nexus<span className="text-violet-200">App</span></span>
           </Link>
         </div>
 
@@ -113,35 +113,35 @@ export default function Register() {
             transition={{ delay: 0.2 }}
             className="text-5xl font-bold leading-tight"
           >
-            Faça parte da <span className="text-cyan-300">próxima geração</span> de inovadores.
+            Faça parte da <span className="text-violet-300">próxima geração</span> de inovadores.
           </motion.h1>
-          <p className="text-xl text-cyan-50/80 leading-relaxed">
+          <p className="text-xl text-violet-50/80 leading-relaxed">
             Junte-se a milhares de usuários que já estão otimizando seu fluxo de trabalho conosco.
           </p>
           
           <div className="space-y-6 pt-8">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-cyan-400/20 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-cyan-300" />
+              <div className="w-10 h-10 rounded-full bg-violet-400/20 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-violet-300" />
               </div>
               <span className="text-lg">Recursos exclusivos e modernos</span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-cyan-400/20 flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-cyan-300" />
+              <div className="w-10 h-10 rounded-full bg-violet-400/20 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-violet-300" />
               </div>
               <span className="text-lg">Controle total sobre seus dados</span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-cyan-400/20 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-cyan-300" />
+              <div className="w-10 h-10 rounded-full bg-violet-400/20 flex items-center justify-center">
+                <Zap className="w-5 h-5 text-violet-300" />
               </div>
               <span className="text-lg">Integração em tempo real</span>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center gap-4 text-sm text-cyan-100/60">
+        <div className="relative z-10 flex items-center gap-4 text-sm text-violet-100/60">
           <Sparkles className="w-4 h-4" />
           <span>Transformando o amanhã, hoje.</span>
         </div>
@@ -150,7 +150,7 @@ export default function Register() {
       {/* Lado Direito - Form de Registro */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative overflow-hidden">
         <div className="lg:hidden absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-teal-400/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-violet-400/20 rounded-full blur-3xl" />
         </div>
 
         <motion.div
@@ -287,7 +287,7 @@ export default function Register() {
 
             <Button
               type="submit"
-              className="w-full h-12 mt-4 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 text-lg font-semibold"
+              className="w-full h-12 mt-4 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 text-lg font-semibold"
               disabled={isRegistering}
             >
               {isRegistering ? (
