@@ -40,5 +40,32 @@ export async function registerRoutes(
     res.json({ message: "Welcome to the dashboard", user: req.user });
   });
 
+  // Team routes
+  app.get("/api/team", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    const members = await storage.getTeamMembers();
+    res.json(members);
+  });
+
+  app.post("/api/team", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    const member = await storage.createTeamMember(req.body);
+    res.status(201).json(member);
+  });
+
+  app.patch("/api/team/:id", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    const id = parseInt(req.params.id);
+    const member = await storage.updateTeamMember(id, req.body);
+    res.json(member);
+  });
+
+  app.delete("/api/team/:id", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    const id = parseInt(req.params.id);
+    await storage.deleteTeamMember(id);
+    res.sendStatus(204);
+  });
+
   return httpServer;
 }

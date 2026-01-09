@@ -6,11 +6,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/use-auth";
 import { Loader2 } from "lucide-react";
 
+import Dashboard from "@/pages/Dashboard";
+import Team from "@/pages/Team";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Recovery from "@/pages/Recovery";
-import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/not-found";
+import { ThemeProvider } from "next-themes";
+import { useAuth } from "@/hooks/use-auth";
 
 function ProtectedRoute({ component: Component }: { component: React.ComponentType }) {
   const { user, isLoading } = useAuth();
@@ -41,6 +44,9 @@ function Router() {
       <Route path="/">
         {() => <ProtectedRoute component={Dashboard} />}
       </Route>
+      <Route path="/team">
+        {() => <ProtectedRoute component={Team} />}
+      </Route>
       
       {/* 404 */}
       <Route component={NotFound} />
@@ -51,10 +57,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Router />
-        <Toaster />
-      </TooltipProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <TooltipProvider>
+          <Router />
+          <Toaster />
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
