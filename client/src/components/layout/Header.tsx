@@ -17,7 +17,7 @@ export function Header() {
   const { user, logout } = useAuth();
   
   const initials = user 
-    ? `${user.name[0]}${user.surname[0]}`.toUpperCase() 
+    ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
     : "U";
 
   return (
@@ -61,12 +61,12 @@ export function Header() {
               <button className="flex items-center gap-3 outline-none group">
                 <div className="hidden md:flex flex-col items-end mr-1">
                   <span className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">
-                    {user?.name} {user?.surname}
+                    {user?.name}
                   </span>
                   <span className="text-xs text-muted-foreground">Administrador</span>
                 </div>
                 <Avatar className="h-9 w-9 border-2 border-transparent group-hover:border-primary transition-all duration-200">
-                  <AvatarImage src={`https://ui-avatars.com/api/?name=${user?.name}+${user?.surname}&background=0D9488&color=fff`} />
+                  <AvatarImage src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || '')}&background=0D9488&color=fff`} />
                   <AvatarFallback className="bg-primary/10 text-primary font-bold">
                     {initials}
                   </AvatarFallback>
