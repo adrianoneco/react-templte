@@ -140,7 +140,7 @@ export default function Login() {
                   id="email"
                   type="email"
                   placeholder="nome@exemplo.com"
-                  className="pl-9 h-12 bg-background border-input focus:border-primary transition-all duration-200 shadow-sm"
+                  className="pl-9 h-12 bg-background/50 border-input input-glow shadow-sm"
                   {...form.register("username")}
                 />
               </div>
@@ -164,7 +164,7 @@ export default function Login() {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className="pl-9 h-12 bg-background border-input focus:border-primary transition-all duration-200 shadow-sm pr-10"
+                  className="pl-9 h-12 bg-background/50 border-input input-glow shadow-sm pr-10"
                   {...form.register("password")}
                 />
                 <button

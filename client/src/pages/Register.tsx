@@ -170,7 +170,7 @@ export default function Register() {
               <Input
                 id="name"
                 placeholder="Ex: John Doe"
-                className="h-11 shadow-sm"
+                className="h-11 bg-background/50 input-glow shadow-sm"
                 {...form.register("name")}
               />
               {form.formState.errors.name && (
@@ -184,7 +184,7 @@ export default function Register() {
                 id="email"
                 type="email"
                 placeholder="nome@exemplo.com"
-                className="h-11 shadow-sm"
+                className="h-11 bg-background/50 input-glow shadow-sm"
                 {...form.register("email")}
               />
               {form.formState.errors.email && (
@@ -269,7 +269,7 @@ export default function Register() {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Crie uma senha forte (min. 16 chars)"
-                  className="h-11 shadow-sm pr-10"
+                  className="h-11 bg-background/50 input-glow shadow-sm pr-10"
                   {...form.register("password")}
                 />
                 <button
