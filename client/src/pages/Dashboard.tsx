@@ -7,33 +7,33 @@ import { motion } from "framer-motion";
 
 const stats = [
   {
-    title: "Total Revenue",
-    value: "$45,231.89",
-    description: "+20.1% from last month",
+    title: "Receita Total",
+    value: "R$ 45.231,89",
+    description: "+20.1% em relação ao mês passado",
     icon: DollarSign,
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
   },
   {
-    title: "Subscriptions",
+    title: "Assinaturas",
     value: "+2350",
-    description: "+180.1% from last month",
+    description: "+180.1% em relação ao mês passado",
     icon: Users,
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
   {
-    title: "Sales",
-    value: "+12,234",
-    description: "+19% from last month",
+    title: "Vendas",
+    value: "+12.234",
+    description: "+19% em relação ao mês passado",
     icon: CreditCard,
-    color: "text-amber-500",
-    bg: "bg-amber-500/10",
+    color: "text-teal-500",
+    bg: "bg-teal-500/10",
   },
   {
-    title: "Active Now",
+    title: "Ativos Agora",
     value: "+573",
-    description: "+201 since last hour",
+    description: "+201 desde a última hora",
     icon: Activity,
     color: "text-rose-500",
     bg: "bg-rose-500/10",
@@ -49,41 +49,37 @@ export default function Dashboard() {
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-display font-bold text-foreground">
-              Dashboard
-            </h1>
-            <p className="text-muted-foreground mt-1">
-              Welcome back, {user?.name}! Here's what's happening today.
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight">Olá, {user?.name}! 👋</h2>
+            <p className="text-muted-foreground">Aqui está o que está acontecendo com seus projetos hoje.</p>
           </div>
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border shadow-sm w-fit">
             <div className={`w-2.5 h-2.5 rounded-full ${isConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
             <span className="text-xs font-medium text-muted-foreground">
-              {isConnected ? 'System Online' : 'Connecting...'}
+              {isConnected ? 'Sistema Online' : 'Conectando...'}
             </span>
           </div>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, i) => (
+          {stats.map((stat, index) => (
             <motion.div
               key={stat.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <Card className="hover:shadow-lg transition-shadow duration-300 border-muted/60">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Card className="hover-elevate border-muted/60">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 gap-1">
                   <CardTitle className="text-sm font-medium text-muted-foreground">
                     {stat.title}
                   </CardTitle>
-                  <div className={`p-2 rounded-lg ${stat.bg}`}>
-                    <stat.icon className={`h-4 w-4 ${stat.color}`} />
+                  <div className={stat.bg + " p-2 rounded-lg"}>
+                    <stat.icon className={"h-4 w-4 " + stat.color} />
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold font-display">{stat.value}</div>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground pt-1">
                     {stat.description}
                   </p>
                 </CardContent>
@@ -95,40 +91,36 @@ export default function Dashboard() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
           <Card className="col-span-4 border-muted/60">
             <CardHeader>
-              <CardTitle>Overview</CardTitle>
-              <CardDescription>
-                Monthly revenue performance
-              </CardDescription>
+              <CardTitle>Visão Geral</CardTitle>
+              <CardDescription>Desempenho mensal de receita</CardDescription>
             </CardHeader>
             <CardContent className="pl-2">
               <div className="h-[300px] flex items-center justify-center text-muted-foreground border-2 border-dashed rounded-lg border-muted m-4">
-                Chart Placeholder
+                Gráfico de atividades virá aqui
               </div>
             </CardContent>
           </Card>
-          
           <Card className="col-span-3 border-muted/60">
             <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
+              <CardTitle>Atividade Recente</CardTitle>
               <CardDescription>
-                Latest user actions
+                Últimas ações dos usuários
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-8">
-                {[1, 2, 3, 4, 5].map((item) => (
-                  <div className="flex items-center" key={item}>
-                    <div className="space-y-1">
-                      <p className="text-sm font-medium leading-none">
-                        User {item} logged in
-                      </p>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="flex items-center">
+                    <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center font-bold text-xs">
+                      U{i}
+                    </div>
+                    <div className="ml-4 space-y-1">
+                      <p className="text-sm font-medium leading-none">Usuário {i} fez login</p>
                       <p className="text-xs text-muted-foreground">
-                        {item} minutes ago
+                        há {i} minutos
                       </p>
                     </div>
-                    <div className="ml-auto font-medium text-xs text-primary">
-                      +20 pts
-                    </div>
+                    <div className="ml-auto font-medium text-xs text-primary">+20 pts</div>
                   </div>
                 ))}
               </div>

@@ -11,11 +11,11 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 
 const MENU_ITEMS = [
-  { label: "Dashboard", href: "/", icon: LayoutDashboard },
-  { label: "Projects", href: "/projects", icon: FileText },
-  { label: "Team", href: "/team", icon: Users },
-  { label: "Analytics", href: "/analytics", icon: PieChart },
-  { label: "Settings", href: "/settings", icon: Settings },
+  { label: "Painel", href: "/", icon: LayoutDashboard },
+  { label: "Projetos", href: "/projects", icon: FileText },
+  { label: "Equipe", href: "/team", icon: Users },
+  { label: "Análises", href: "/analytics", icon: PieChart },
+  { label: "Configurações", href: "/settings", icon: Settings },
 ];
 
 export function Sidebar() {
@@ -61,7 +61,7 @@ export function Sidebar() {
           className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
         >
           <LogOut className="w-5 h-5" />
-          <span className="font-medium">Sign Out</span>
+          <span className="font-medium">Sair</span>
         </button>
       </div>
     </aside>

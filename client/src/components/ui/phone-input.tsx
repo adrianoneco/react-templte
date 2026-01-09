@@ -17,14 +17,12 @@ import {
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 
-// Define supported countries with codes and masks
-// Simplified list for demo purposes
 const COUNTRIES = [
-  { code: "BR", name: "Brazil", dial: "+55", mask: "(00) 0 0000-0000" },
-  { code: "US", name: "United States", dial: "+1", mask: "(000) 000-0000" },
+  { code: "BR", name: "Brasil", dial: "+55", mask: "(00) 0 0000-0000" },
+  { code: "US", name: "Estados Unidos", dial: "+1", mask: "(000) 000-0000" },
   { code: "PT", name: "Portugal", dial: "+351", mask: "000 000 000" },
   { code: "AR", name: "Argentina", dial: "+54", mask: "(000) 000-0000" },
-  { code: "GB", name: "United Kingdom", dial: "+44", mask: "0000 000000" },
+  { code: "GB", name: "Reino Unido", dial: "+44", mask: "0000 000000" },
 ] as const;
 
 interface PhoneInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -35,40 +33,29 @@ interface PhoneInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElemen
 
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   ({ value, onChange, className, error, ...props }, ref) => {
-    // Default to Brazil or first option
     const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
     const [open, setOpen] = useState(false);
-
-    // This is the raw value for the input field (without country code)
-    // We need to parse the incoming value to separate CC if needed, 
-    // but for simplicity in this component we assume 'value' passed in 
-    // is the full string including CC, or we manage internal state.
-    // 
-    // However, the requirement is to save: CC + DDD + Digits.
-    // And input mask is (00) ...
-    // Let's keep the internal state as just the masked part for the input,
-    // and emit the full numeric string on change.
 
     const FlagComponent = Flags[selectedCountry.code as keyof typeof Flags];
 
     return (
-      <div className={cn("flex rounded-lg border bg-background ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 transition-all duration-200", error ? "border-destructive ring-destructive/20" : "border-input")}>
+      <div className={cn("flex rounded-lg border bg-background ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 transition-all duration-200 shadow-sm", error ? "border-destructive ring-destructive/20" : "border-input")}>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="flex items-center gap-2 px-3 py-2 border-r hover:bg-muted/50 transition-colors rounded-l-lg outline-none"
+              className="flex items-center gap-2 px-3 py-2 border-r hover:bg-muted transition-colors rounded-l-lg outline-none"
             >
               {FlagComponent && <FlagComponent className="w-6 h-4 rounded-sm shadow-sm" />}
               <span className="text-sm font-medium text-muted-foreground">{selectedCountry.dial}</span>
               <ChevronDown className="h-3 w-3 opacity-50" />
             </button>
           </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0" align="start">
-            <Command>
-              <CommandInput placeholder="Search country..." />
+          <PopoverContent className="w-[220px] p-0 opacity-100 bg-popover" align="start">
+            <Command className="bg-popover opacity-100">
+              <CommandInput placeholder="Buscar país..." />
               <CommandList>
-                <CommandEmpty>No country found.</CommandEmpty>
+                <CommandEmpty>Nenhum país encontrado.</CommandEmpty>
                 <CommandGroup>
                   {COUNTRIES.map((country) => {
                     const CFlag = Flags[country.code as keyof typeof Flags];
@@ -79,7 +66,6 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
                         onSelect={() => {
                           setSelectedCountry(country);
                           setOpen(false);
-                          // Clear input on country change to prevent format mess
                           onChange(""); 
                         }}
                       >
@@ -100,25 +86,16 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
         <IMaskInput
           className={cn(
-            "flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 font-mono",
+            "flex h-11 w-full bg-transparent px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 font-mono",
             className
           )}
           mask={selectedCountry.mask}
           definitions={{
             '0': /[0-9]/,
           }}
-          value={value} // Controls the display value in the input
-          unmask={true} // We want unmasked value for processing? No, let's handle manually
-          onAccept={(val: string, mask: any) => {
-            // val is the raw unmasked value of the input part
-            // We need to combine Country Code + Val
-            // But the parent form expects the 'phone' string.
-            // Requirement: "ao salvar salve somente os numeros o codigo de pais e os 2 primeiros que seria o ddd e os 8 ultimos numeros"
-            
-            // We pass just the raw digits of the input to the parent.
-            // The parent (or this component) should combine with Dial Code.
-            // Let's pass the raw digits combined with CC.
-            
+          value={value}
+          unmask={true}
+          onAccept={(val: string) => {
             const rawDigits = val.replace(/\D/g, "");
             if (rawDigits.length > 0) {
               const cc = selectedCountry.dial.replace(/\D/g, "");
