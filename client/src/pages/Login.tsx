@@ -194,7 +194,7 @@ export default function Login() {
 
             <Button
               type="submit"
-              className="w-full h-12 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 text-lg font-semibold"
+              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 text-lg font-semibold"
               disabled={isLoggingIn}
             >
               {isLoggingIn ? (

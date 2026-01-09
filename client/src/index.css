@@ -12,24 +12,24 @@
   --background: 240 20% 98%;
   --foreground: 240 50% 10%;
   
-  --primary: 262 80% 50%;      /* Purple 600 */
-  --primary-foreground: 240 20% 99%;
+  --primary: 217 91% 55%;      /* Blue 600 */
+  --primary-foreground: 0 0% 100%; /* Pure White */
   
-  --secondary: 240 30% 95%;    /* Blue 50 */
-  --secondary-foreground: 262 80% 50%;
+  --secondary: 217 30% 95%;    /* Blue 50 */
+  --secondary-foreground: 217 91% 55%;
   
   --muted: 240 20% 94%;
   --muted-foreground: 240 10% 45%;
   
-  --accent: 221 83% 53%;       /* Blue 600 */
-  --accent-foreground: 240 20% 99%;
+  --accent: 262 80% 50%;       /* Purple 600 */
+  --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
   --border: 240 15% 90%;
   --input: 240 15% 90%;
-  --ring: 262 80% 50%;
+  --ring: 217 91% 55%;
   
   --card: 0 0% 100%;
   --card-foreground: 240 50% 10%;
@@ -45,8 +45,8 @@
   --background: 240 30% 6%;
   --foreground: 240 20% 98%;
   
-  --primary: 262 70% 65%;      /* Brighter Purple */
-  --primary-foreground: 240 30% 6%;
+  --primary: 217 91% 60%;      /* Brighter Blue */
+  --primary-foreground: 0 0% 100%; /* Pure White */
   
   --secondary: 240 25% 15%;
   --secondary-foreground: 240 20% 98%;
