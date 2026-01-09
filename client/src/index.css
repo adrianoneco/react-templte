@@ -42,32 +42,32 @@
 
 .dark {
   /* PURPLE / BLUE Theme - Dark Mode (Softer & Brighter) */
-  --background: 240 30% 6%;
+  --background: 240 20% 12%;
   --foreground: 240 20% 98%;
   
-  --primary: 262 70% 60%;      /* Brighter Purple for Dark Mode */
+  --primary: 262 70% 65%;      /* Brighter Purple for Dark Mode */
   --primary-foreground: 0 0% 100%; /* Pure White */
   
-  --secondary: 240 25% 15%;
+  --secondary: 240 15% 18%;
   --secondary-foreground: 240 20% 98%;
   
-  --muted: 240 25% 15%;
-  --muted-foreground: 240 10% 70%;
+  --muted: 240 15% 18%;
+  --muted-foreground: 240 10% 75%;
   
-  --accent: 217 91% 60%;       /* Brighter Blue */
-  --accent-foreground: 240 30% 6%;
+  --accent: 217 91% 65%;       /* Brighter Blue */
+  --accent-foreground: 240 20% 12%;
   
-  --destructive: 0 62% 45%;
+  --destructive: 0 62% 50%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 240 20% 20%;
-  --input: 240 20% 20%;
-  --ring: 262 70% 60%;
+  --border: 240 15% 22%;
+  --input: 240 15% 22%;
+  --ring: 262 70% 65%;
   
-  --card: 240 30% 10%;
+  --card: 240 20% 15%;
   --card-foreground: 240 20% 98%;
 
-  --popover: 240 30% 10%;
+  --popover: 240 20% 15%;
   --popover-foreground: 240 20% 98%;
 }
 
