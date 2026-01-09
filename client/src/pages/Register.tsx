@@ -46,10 +46,9 @@ export default function Register() {
   });
 
   const onSubmit = (data: RegisterForm) => {
-    // Pegar o dial code selecionado. Como o PhoneInput não expõe o dial code diretamente,
-    // mas sabemos que o padrão é Brasil (+55), e o PhoneInput salva apenas os dígitos do input.
-    // Vamos garantir que o DDI seja adicionado aqui.
-    const ddi = "55"; // Padrão Brasil como solicitado
+    // Busca o dial code baseado no país selecionado no PhoneInput (padrão Brasil +55)
+    // O PhoneInput agora passa apenas os dígitos do input (DDD + Telefone)
+    const ddi = "55"; 
     const formattedData = {
       ...data,
       name: data.name.trim().toUpperCase(),

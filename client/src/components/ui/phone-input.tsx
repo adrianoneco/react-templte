@@ -89,12 +89,18 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             "flex h-11 w-full bg-transparent px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 font-mono",
             className
           )}
-          mask={selectedCountry.mask}
+          mask={[
+            { mask: "(00) 0000-0000" },
+            { mask: "(00) 0 0000-0000" }
+          ]}
           dispatch={(appended, dynamicMasked) => {
             const isBR = selectedCountry.code === "BR";
-            const currentRaw = (dynamicMasked.unmaskedValue || "") + appended;
-            if (isBR && currentRaw.length > 10) {
-              return "(00) 0 0000-0000";
+            if (isBR) {
+              const currentRaw = (dynamicMasked.unmaskedValue || "") + appended;
+              if (currentRaw.length > 10) {
+                return "(00) 0 0000-0000";
+              }
+              return "(00) 0000-0000";
             }
             return selectedCountry.mask;
           }}
