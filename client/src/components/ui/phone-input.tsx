@@ -92,7 +92,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           mask={selectedCountry.mask}
           dispatch={(appended, dynamicMasked) => {
             const isBR = selectedCountry.code === "BR";
-            const currentRaw = dynamicMasked.unmaskedValue + appended;
+            const currentRaw = (dynamicMasked.unmaskedValue || "") + appended;
             if (isBR && currentRaw.length > 10) {
               return "(00) 0 0000-0000";
             }
@@ -105,12 +105,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           unmask={true}
           onAccept={(val: string) => {
             const rawDigits = val.replace(/\D/g, "");
-            if (rawDigits.length > 0) {
-              const cc = selectedCountry.dial.replace(/\D/g, "");
-              onChange(cc + rawDigits);
-            } else {
-              onChange("");
-            }
+            const cc = selectedCountry.dial.replace(/\D/g, "");
+            onChange(cc + rawDigits);
           }}
           placeholder={selectedCountry.mask.replace(/0/g, "_")}
           inputRef={ref as any}

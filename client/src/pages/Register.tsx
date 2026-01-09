@@ -46,7 +46,14 @@ export default function Register() {
   });
 
   const onSubmit = (data: RegisterForm) => {
-    register(data);
+    const formattedData = {
+      ...data,
+      name: data.name.trim().toUpperCase(),
+      surname: data.surname.trim().toUpperCase(),
+      email: data.email.trim().toLowerCase(),
+      phone: data.phone.replace(/\D/g, ""),
+    };
+    register(formattedData);
   };
 
   return (
